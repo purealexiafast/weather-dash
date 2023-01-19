@@ -1,0 +1,66 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+h1{
+    background-image: linear-gradient(to right, rgb(174, 93, 174), rgb(48, 48, 145));
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 400px;
+    text-align: center;
+    color: white;
+    font-size: larger;
+}
+
+input{
+    display: block;
+    border: 1px solid black;
+    width: 100%;
+    margin: 10px 0px 15px 10px;
+    padding: 5px 4px;
+}
+
+button{
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+label{
+    margin-left: 10px;
+    font-size:large;
+}
+
+#form-section{
+    margin: 10px;
+}
+
+#search-button{
+    background-color: rgb(100, 100, 238);
+    color: white;
+}
+
+.form-buttons{
+    display: block;
+    background-color: rgb(160, 159, 159);
+}
+
+#city-weather{
+    border: 1px solid black;
+    height: 150px;
+    margin-right: 50px;
+    margin-left: 20px;
+    margin-top: 47px;
+    
+}
+
+#day5-forecast{
+    border: 1px solid black;
+    height: 150px;
+    margin-right:50px;
+    margin-left: 20px;
+}

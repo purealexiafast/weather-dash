@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+        <div class="grid grid-cols-6 gap-4">
+            <section class="col-start-1 row-start-1 row-span-6 col-span-1" id="form-section">
+                <form>
+                    <label for="city"><strong>Search for a city:</strong></label><br>
+                    <input type="text" name="city" placeholder="Montreal">
+                    <button class="form-buttons" id="search-button">Search</button>
+                    <hr>
+                    <button class="form-buttons">Vancouver</button>
+                    <button class="form-buttons">Toronto</button>
+                    <button class="form-buttons">Montreal</button>
+                    <button class="form-buttons">Calgary</button>
+                    <button class="form-buttons">Edmonton</button>
+                    <button class="form-buttons">Winnipeg</button>
+                </form>
+            </section>
+            <section id="city-weather" class="col-start-2 col-span-5 row-start-1 row-span-3">
+            </section>
+
+            <section id="day5-forecast" class="col-start-2 col-span-5 row-start-4 row-span-3">
+                <h2><strong>5-Day Forecast:</strong></h2>
+                <div class="forecast-boxes"></div>
+                <div class="forecast-boxes"></div>
+                <div class="forecast-boxes"></div>
+                <div class="forecast-boxes"></div>
+                <div class="forecast-boxes"></div>
+            </section>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
