@@ -31,13 +31,38 @@ function getWeather(lat, lon) {
 
         })
         .then(function (dataJsonFormat) {
-            console.log(dataJsonFormat);
-           displayWeather();
+           // console.log(dataJsonFormat);
+            console.log(dataJsonFormat.list);
+            let lessDays = dataJsonFormat.list.filter(function(element){
+                if(element.dt_txt.includes("12:00:00"))
+                return true;
+                else 
+                return false;
+            })
+            console.log(lessDays);
+            
+           displayWeather(lessDays);
         });
 }
 
-function displayWeather(){
-     
+
+/*var day5 = document.getElementById("buttons")
+var anotherP = document.createElement("p");
+anotherP.textContent= "hello world";
+day5.appendChild(anotherP);
+anotherP.style.color="red";*/
+
+function displayWeather(days5){
+console.log(days5)
+
+     const days5Container = document.getElementById("day5-forecast");
+    days5Container.classList.add("days")
+     for (let index = 0; index < days5.length; index++) {
+        const day = days5[index];
+       const dEl = document.createElement("div")
+       dEl.classList.add("day")
+       dEl.textContent = day.dt_txt.replace(" 12:00:00", "");
+       days5Container.append(dEl);
+     }
     
-    //dont forget to call function
 }

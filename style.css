@@ -24,6 +24,7 @@ input{
 
 button{
     margin: 10px;
+    margin-top: 20px;
     border: 1px solid black;
     border-radius: 4px;
     padding: 5px 10px;
@@ -63,4 +64,13 @@ label{
     height: 150px;
     margin-right:50px;
     margin-left: 20px;
+}
+
+.days{
+    display:flex;
+    flex-flow: row wrap;
+}
+
+.day{
+    width:20%;
 }
