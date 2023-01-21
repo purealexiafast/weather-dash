@@ -19,32 +19,25 @@
             <section class="col-start-1 row-start-1 row-span-6 col-span-1" id="form-section">
                 <form>
                     <label for="city"><strong>Search for a city:</strong></label><br>
-                    <input type="text" name="city" placeholder="Montreal">
+                    <input type="text" name="city" placeholder="Montreal" id="input">
                     <button class="form-buttons" id="search-button">Search</button>
                     <hr>
-                    <button class="form-buttons">Vancouver</button>
-                    <button class="form-buttons">Toronto</button>
-                    <button class="form-buttons">Montreal</button>
-                    <button class="form-buttons">Calgary</button>
-                    <button class="form-buttons">Edmonton</button>
-                    <button class="form-buttons">Winnipeg</button>
+                   <div id="buttons"></div>
                 </form>
             </section>
             <section id="city-weather" class="col-start-2 col-span-5 row-start-1 row-span-3">
+                <h2></h2>
+                <p></p>
             </section>
 
-            <section id="day5-forecast" class="col-start-2 col-span-5 row-start-4 row-span-3">
+            <section class="col-start-2 col-span-5 row-start-4 row-span-3">
                 <h2><strong>5-Day Forecast:</strong></h2>
-                <div class="forecast-boxes"></div>
-                <div class="forecast-boxes"></div>
-                <div class="forecast-boxes"></div>
-                <div class="forecast-boxes"></div>
-                <div class="forecast-boxes"></div>
+                <div id="day5-forecast"></div>
             </section>
         </div>
 
     </main>
-
+<script src="script.js"></script>
 </body>
 
 </html>
