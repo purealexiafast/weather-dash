@@ -16,11 +16,23 @@ function getLocation(cityName) {
 
         })
         .then(function (dataJsonFormat) {
-            console.log(dataJsonFormat);
+            console.log(dataJsonFormat)
+            const searchedCity = dataJsonFormat[0].name
+            savedSearch(searchedCity)
             const lat = dataJsonFormat[0].lat
             const lon = dataJsonFormat[0].lon
             getWeather(lat, lon);
         });
+}
+function savedSearch(city) {
+    const previousSearches = JSON.parse(localStorage.getItem("searchedcitys")) || []
+    if (!previousSearches.includes(city)
+
+
+    ) {
+        previousSearches.push(city)
+        localStorage.setItem("searchedcitys", JSON.stringify(previousSearches))
+    }
 }
 
 function getWeather(lat, lon) {
@@ -31,17 +43,18 @@ function getWeather(lat, lon) {
 
         })
         .then(function (dataJsonFormat) {
-           // console.log(dataJsonFormat);
+            // console.log(dataJsonFormat);
             console.log(dataJsonFormat.list);
-            let lessDays = dataJsonFormat.list.filter(function(element){
-                if(element.dt_txt.includes("12:00:00"))
-                return true;
-                else 
-                return false;
+            let lessDays = dataJsonFormat.list.filter(function (element) {
+                if (element.dt_txt.includes("12:00:00"))
+                    return true;
+                else
+                    return false;
             })
-            console.log(lessDays);
-            
-           displayWeather(lessDays);
+
+            displayWeather(lessDays);
+
+            currentWeather(dataJsonFormat.list[0]);
         });
 }
 
@@ -52,17 +65,62 @@ anotherP.textContent= "hello world";
 day5.appendChild(anotherP);
 anotherP.style.color="red";*/
 
-function displayWeather(days5){
-console.log(days5)
+function displayWeather(days5) {
 
-     const days5Container = document.getElementById("day5-forecast");
+    const days5Container = document.getElementById("day5-forecast");
     days5Container.classList.add("days")
-     for (let index = 0; index < days5.length; index++) {
+    for (let index = 0; index < days5.length; index++) {
         const day = days5[index];
-       const dEl = document.createElement("div")
-       dEl.classList.add("day")
-       dEl.textContent = day.dt_txt.replace(" 12:00:00", "");
-       days5Container.append(dEl);
-     }
-    
+        const dEl = document.createElement("div")
+        dEl.classList.add("day")
+        dEl.textContent = day.dt_txt.replace(" 12:00:00", "");
+        days5Container.append(dEl);
+
+        const temp = document.createElement("h3")
+        temp.textContent = day.main.temp
+        dEl.appendChild(temp);
+
+        const wind = document.createElement("h3")
+        wind.textContent = day.wind.speed
+        dEl.appendChild(wind)
+
+        const humid = document.createElement("h3")
+        humid.textContent = day.main.humidity
+        dEl.appendChild(humid)
+
+    }
+
+
+
 }
+
+
+function currentWeather(days1) {
+
+    const day1Container = document.getElementById("city-weather");
+    const day1Weather = document.createElement("div")
+    day1Container.innerHTML = ""; //set on other functions above
+    day1Weather.classList.add("day1")
+    const date = new Date(days1.dt * 1000)
+
+
+    day1Weather.textContent = date.toLocaleDateString();
+    day1Container.append(day1Weather);
+
+    const temp = document.createElement("h3")
+    temp.textContent = "Temperature: " + days1.main.temp
+    day1Container.appendChild(temp)
+
+    const wind = document.createElement("h3")
+    wind.textContent = days1.wind.speed
+    day1Container.appendChild(wind)
+
+    const humid = document.createElement("h3")
+    humid.textContent = days1.main.humidity
+    day1Container.appendChild(humid)
+
+    console.log(days1);
+
+}
+
+
