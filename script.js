@@ -9,7 +9,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
 });
 
 function getLocation(cityName) {
-    const locationGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + ApiKey
+    const locationGeo = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + ApiKey
     fetch(locationGeo)
         .then(function (locationData) {  //after data is recieved from open weather THEN run this function
             return locationData.json() //Must return so that the next .then function can pick it up
@@ -37,7 +37,7 @@ function savedSearch(city) {
 }
 
 function getWeather(lat, lon, searchedCity) {
-    const weather5Day = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + ApiKey //imperial is setting diff than standard to get farenheight instead of kalvin
+    const weather5Day = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + ApiKey //imperial is setting diff than standard to get farenheight instead of kalvin
     fetch(weather5Day)
         .then(function (weatherData) {  //after data is recieved from open weather THEN run this function
             return weatherData.json() //Must return so that the next .then function can pick it up
