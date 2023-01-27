@@ -8,6 +8,8 @@ This assignment was to create a weather dashboard that gives the current weather
 
 # See screenshot below
 
+<img src="./weather-dash.jpg" alt="Weather Dashboard">
+
 # See deployed website below
 
 https://purealexiafast.github.io/weather-dash/
