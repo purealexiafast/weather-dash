@@ -117,22 +117,16 @@ function displayButtons(){
     
  }
 
-
-
 }
 
 displayButtons();
-
-function displayNameOfCity(){
-    
-}
 
 
 function currentWeather(days1) {
 
     const day1Container = document.getElementById("city-weather");
     const day1Weather = document.createElement("div")
-    day1Container.innerHTML = ""; //set on other functions above
+    day1Container.innerHTML = "";
     day1Weather.classList.add("day1")
     const date = new Date(days1.dt * 1000)
 
