@@ -75,6 +75,10 @@ function displayWeather(days5) {
         dEl.textContent = day.dt_txt.replace(" 12:00:00", "");
         days5Container.append(dEl);
 
+        const weatherImages = document.createElement("img")
+        weatherImages.setAttribute("src", `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`)
+        dEl.appendChild(weatherImages) //Why does this work, with "day"
+
         const temp = document.createElement("h3")
         temp.textContent = "Temperature: " + day.main.temp
         dEl.appendChild(temp);
@@ -87,9 +91,7 @@ function displayWeather(days5) {
         humid.textContent ="Humidity: " + day.main.humidity
         dEl.appendChild(humid)
 
-        const weatherImages = document.createElement("img")
-        weatherImages.setAttribute("src", `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`)
-        dEl.appendChild(weatherImages)
+    
     } 
 
 }
@@ -105,14 +107,25 @@ function displayButtons(){
     
     buttonDiv.append(button);
     button.addEventListener("click", function(event){
-       event.preventDefault()
+
+    //How to take the button names and put in container 1 for a heading when user clicks?
+
+
+    event.preventDefault()       
     getLocation(savedCities[i])
     })
     
  }
+
+
+
 }
 
 displayButtons();
+
+function displayNameOfCity(){
+    
+}
 
 
 function currentWeather(days1) {
@@ -122,9 +135,16 @@ function currentWeather(days1) {
     day1Container.innerHTML = ""; //set on other functions above
     day1Weather.classList.add("day1")
     const date = new Date(days1.dt * 1000)
+
+    const container1CityName = document.getElementById("input").value
+    day1Container.append(container1CityName)
+
+   
     const  image = document.createElement("img")
     image.setAttribute("src", `https://openweathermap.org/img/wn/${days1.weather[0].icon}.png`)
     day1Container.append(image)
+    image.classList.add("temp-image")
+    
 
 
     day1Weather.textContent = date.toLocaleDateString();
