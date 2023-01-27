@@ -1,4 +1,4 @@
-const ApiKey = "180c9f853ac8fcc595fe4080e0abf997" //replace with my API key later
+const ApiKey = "16d59cf66d3930a656df911a48b325c6" 
 
 
 
@@ -21,7 +21,7 @@ function getLocation(cityName) {
             savedSearch(searchedCity)
             const lat = dataJsonFormat[0].lat
             const lon = dataJsonFormat[0].lon
-            getWeather(lat, lon);
+            getWeather(lat, lon, searchedCity);
         });
 }
 function savedSearch(city) {
@@ -36,8 +36,8 @@ function savedSearch(city) {
     }
 }
 
-function getWeather(lat, lon) {
-    const weather5Day = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + ApiKey //imperial is setting diff than standard to get farenheight instead of kalvin
+function getWeather(lat, lon, searchedCity) {
+    const weather5Day = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + ApiKey //imperial is setting diff than standard to get farenheight instead of kalvin
     fetch(weather5Day)
         .then(function (weatherData) {  //after data is recieved from open weather THEN run this function
             return weatherData.json() //Must return so that the next .then function can pick it up
@@ -55,7 +55,7 @@ function getWeather(lat, lon) {
 
             displayWeather(lessDays);
 
-            currentWeather(dataJsonFormat.list[0]);
+            currentWeather(dataJsonFormat.list[0], searchedCity);
         });
 }
 
@@ -77,7 +77,7 @@ function displayWeather(days5) {
 
         const weatherImages = document.createElement("img")
         weatherImages.setAttribute("src", `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`)
-        dEl.appendChild(weatherImages) //Why does this work, with "day"
+        dEl.appendChild(weatherImages) 
 
         const temp = document.createElement("h3")
         temp.textContent = "Temperature: " + day.main.temp
@@ -98,7 +98,7 @@ function displayWeather(days5) {
 
 
 function displayButtons(){
- const savedCities = JSON.parse(localStorage.getItem("searchedcitys"))
+ const savedCities = JSON.parse(localStorage.getItem("searchedcitys")) || [] //if falsy (null, undefined, false, empty strings, NaN) will convert to array 
  const buttonDiv = document.getElementById("buttons");
  buttonDiv.innerHTML = ""
  for (let i = 0; i < savedCities.length; i++) {
@@ -107,9 +107,6 @@ function displayButtons(){
     
     buttonDiv.append(button);
     button.addEventListener("click", function(event){
-
-    //How to take the button names and put in container 1 for a heading when user clicks?
-
 
     event.preventDefault()       
     getLocation(savedCities[i])
@@ -122,7 +119,7 @@ function displayButtons(){
 displayButtons();
 
 
-function currentWeather(days1) {
+function currentWeather(days1, searchedCity) {
 
     const day1Container = document.getElementById("city-weather");
     const day1Weather = document.createElement("div")
@@ -130,12 +127,17 @@ function currentWeather(days1) {
     day1Weather.classList.add("day1")
     const date = new Date(days1.dt * 1000)
 
-    const container1CityName = document.getElementById("input").value
-    day1Container.append(container1CityName)
+    const cityNameDay1 = document.createElement("h2")
+    cityNameDay1.style.display = "inline-block"
+    cityNameDay1.textContent = searchedCity
+    day1Container.append(cityNameDay1)
+
+    console.log(days1)
 
    
     const  image = document.createElement("img")
     image.setAttribute("src", `https://openweathermap.org/img/wn/${days1.weather[0].icon}.png`)
+    image.style.display = "inline-block"
     day1Container.append(image)
     image.classList.add("temp-image")
     
